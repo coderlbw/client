@@ -1,0 +1,60 @@
+#infoContainer {
+  display: flex;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 0.8);
+  overflow: auto;
+  justify-content: space-between;
+  word-break: break-word;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 20px 10px;
+}
+
+.activeContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.activeItem {
+  position: relative;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin: 8px;
+  width: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+  img {
+    width: 100px;
+  }
+  span {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    padding: 3px 7px;
+    background: rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.leaveButton {
+  margin: 0 auto;
+  background: #b53737;
+  border: 0;
+  color: #fff;
+  padding: 15px 20px;
+  width: fit-content;
+  &:hover {
+    opacity: 0.9;
+  }
+}
