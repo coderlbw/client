@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 
 
-const ENDPOINT = "http://localhost:8080"
+const ENDPOINT = "http://192.168.1.100:8080"
 
 function Socket() {
   this.socket = io(ENDPOINT);

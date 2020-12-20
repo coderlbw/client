@@ -3,6 +3,7 @@ import React from "react";
 import { Icon, Menu, Tab } from 'semantic-ui-react';
 import Chat from './Chat/Chat';
 import './Panel.scss';
+import QueueHistory from './QueueHistory/QueueHistory';
 import Settings from './Settings/Settings';
 import Users from './Users/Users';
 
@@ -11,6 +12,11 @@ const Panel = ({
     updateCurrUser,
     room,
     history,
+    videoProps,
+    updateVideoProps,
+    playerRef,
+    sendVideoState,
+    playVideoFromSearch,
     users
 }) => {
 
@@ -19,6 +25,16 @@ const Panel = ({
             menuItem: { key: 'queue', content: 'Queue' },
             pane: (
                 <Tab.Pane key='queue'>
+                    <QueueHistory
+                        currUser={currUser}
+                        room={room}
+                        videoProps={videoProps}
+                        updateVideoProps={updateVideoProps}
+                        playerRef={playerRef}
+                        isQueue={true}
+                        sendVideoState={sendVideoState}
+                        playVideoFromSearch={playVideoFromSearch}
+                    />
                 </Tab.Pane>
             ),
         },
@@ -26,6 +42,16 @@ const Panel = ({
             menuItem: { key: 'history', content: 'History' },
             pane: (
                 <Tab.Pane key='history'>
+                    <QueueHistory
+                        currUser={currUser}
+                        room={room}
+                        videoProps={videoProps}
+                        updateVideoProps={updateVideoProps}
+                        playerRef={playerRef}
+                        isQueue={false}
+                        sendVideoState={sendVideoState}
+                        playVideoFromSearch={playVideoFromSearch}
+                    />
                 </Tab.Pane>
             ),
         },
