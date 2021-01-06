@@ -77,6 +77,17 @@ const VideoChat = ({currUser, updateCurrUser, room, history, users}) => {
                             item.peer.signal(payload.signal);
                         });
 
+                        sckt.socket.on("user left", id => {
+                            const peerObj = peersRef.current.find(p => p.peerID === id);
+                            if(peerObj){
+                                peerObj.peer.destroy()
+                            }
+
+                            const peers = peersRef.current.filter(p => p.peerID !== id);
+                            peersRef.current = peers;
+                            setPeers(peers)
+                        })
+
 
                     } else {
                         console.log("dont proceed with call")
