@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {  useRef, useState } from 'react';
 import { Input } from 'semantic-ui-react';
 import {
     youtube_parser,
@@ -7,7 +7,7 @@ import {
     isValidURL
 } from '../../../utils/video';
 import './Search.scss';
-import SearchResults from './SearchResults/SearchResults';
+// import SearchResults from './SearchResults/SearchResults';
 import { store } from 'react-notifications-component';
 
 require('dotenv').config()
@@ -15,8 +15,8 @@ require('dotenv').config()
 const VideoSearch = ({ addVideoToQueue, playVideoFromSearch, updateVideoProps }) => {
     const [searchInput, setSearchInput] = useState('');
     const [loading, setLoading] = useState(false);
-    const [searchResults, setSearchResults] = useState([]);
-    const [page, setPage] = useState(1);
+    // const [searchResults, setSearchResults] = useState([]);
+    // const [page, setPage] = useState(1);
     const baseURL = "https://video-meta.herokuapp.com"
     const lastSearch = useRef('');
 
@@ -51,25 +51,25 @@ const VideoSearch = ({ addVideoToQueue, playVideoFromSearch, updateVideoProps })
             }
         } else {
             // Search phrase on Youtube 
-            search({ term: trimInput, page: 1 });
+            // search({ term: trimInput, page: 1 });
             updateVideoProps({ videoType: 'yt' });
         }
     };
-    const search = async ({ term, page = 1 }) => {
-        const limit = (window.matchMedia('(max-width: 960px)').matches) ? 8 : 9;
-        setLoading(false);
-        axios.get(`${baseURL}/ytsearch`, {
-            params: {
-                query: term,
-                page: page,
-                limit: limit
-            }
-        }).then(response => {
-            setSearchResults(response.data.results);
-            setPage(page);
-            setLoading(false);
-        });
-    };
+    // const search = async ({ term, page = 1 }) => {
+    //     const limit = (window.matchMedia('(max-width: 960px)').matches) ? 8 : 9;
+    //     setLoading(false);
+    //     axios.get(`${baseURL}/ytsearch`, {
+    //         params: {
+    //             query: term,
+    //             page: page,
+    //             limit: limit
+    //         }
+    //     }).then(response => {
+    //         setSearchResults(response.data.results);
+    //         setPage(page);
+    //         setLoading(false);
+    //     });
+    // };
     const getYTVideo = async (ytUrl) => {
         const videoId = youtube_parser(ytUrl);
         setLoading(false);
@@ -118,7 +118,7 @@ const VideoSearch = ({ addVideoToQueue, playVideoFromSearch, updateVideoProps })
         playVideoFromSearch({ video: { id: scUrl, url: scUrl }, channel: { username: '' } });
     }
     // Ping YT scraper without loading icon
-    useEffect(() => { search('') }, []);
+    // useEffect(() => { search('') }, []);
 
     return (
         <div className="videoSearchContainer">
@@ -126,7 +126,7 @@ const VideoSearch = ({ addVideoToQueue, playVideoFromSearch, updateVideoProps })
                 fluid
                 id='searchInput'
                 size='large'
-                placeholder='Search a YouTube video or paste a video link...'
+                placeholder='Search paste a video link...'
                 value={searchInput}
                 onChange={e => setSearchInput(e.target.value)}
                 onKeyPress={e => e.key === 'Enter' ? handlePlay(e) : null}
@@ -136,7 +136,7 @@ const VideoSearch = ({ addVideoToQueue, playVideoFromSearch, updateVideoProps })
                     onClick: (e) => searchInput.trim() !== '' ? handlePlay(e) : null
                 }}
             />
-            <SearchResults
+            {/* <SearchResults
                 searchResults={searchResults}
                 playVideoFromSearch={playVideoFromSearch}
                 addVideoToQueue={addVideoToQueue}
@@ -144,7 +144,7 @@ const VideoSearch = ({ addVideoToQueue, playVideoFromSearch, updateVideoProps })
                 search={search}
                 searchInput={searchInput}
                 loading={loading}
-            />
+            /> */}
         </div>
     )
 };

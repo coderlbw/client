@@ -40,13 +40,7 @@ const Video = ({ log, name, room, videoProps, updateVideoProps, playerRef, sendV
         });
         updateVideoProps({ queue: updatedQueue });
     }
-    // // Debugging
-    // useEffect(() => {
-    //     console.log("Queue: ", videoProps.queue);
-    // }, [videoProps.queue])
-    // useEffect(() => {
-    //     console.log("History: ", videoProps.history);
-    // }, [videoProps.history])
+   
 
     useEffect(() => {
         // Send videoProps to new user
@@ -67,6 +61,8 @@ const Video = ({ log, name, room, videoProps, updateVideoProps, playerRef, sendV
             sckt.socket.off('getSync', getSyncHandler);
         };
     });
+
+
     useEffect(() => {
         // Sync other user's videoProps to our state
         const startSyncHandler = (videoProps) => {
@@ -143,13 +139,13 @@ const Video = ({ log, name, room, videoProps, updateVideoProps, playerRef, sendV
                     <Divider vertical>Or</Divider>
 
                     <Grid.Row verticalAlign='middle'>
-                        <Grid.Column>
+                        {/* <Grid.Column>
                             <Header icon>
                                 <Icon name='search' />
                                 Search for a YouTube video
                             </Header>
                             <Button onClick={() => { document.getElementById("searchInput").focus(); }}>Search above!</Button>
-                        </Grid.Column>
+                        </Grid.Column> */}
 
                         <Grid.Column>
                             <Header icon>

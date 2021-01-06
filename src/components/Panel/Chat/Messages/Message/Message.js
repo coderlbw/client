@@ -6,9 +6,14 @@ import './Message.scss';
 const Message = ({ message: { user, text }, currUser, users }) => {
     const getNameById = (id) => {
         const existingUser = users.find(x => x.id === id);
-        if (existingUser) return existingUser.name;
+        if (existingUser)  {
+          const [first, last] =  existingUser.name.split(" ");
+          return first[0]+last[0]
+        }
         return '';
     }
+
+    
     return (
         user.id === currUser.id ? (
             <div className='messageContainer justifyEnd'>
@@ -17,11 +22,7 @@ const Message = ({ message: { user, text }, currUser, users }) => {
                     <p className='messageText colorWhite'>{ReactEmoji.emojify(text)}</p>
                 </div>
                 <section>
-                    <img src={getAvatarUrl({
-                        name: getNameById(currUser.id),
-                        background: currUser.colors.bg,
-                        color: currUser.colors.txt,
-                    })} alt='avatar' />
+                    <h4>{getNameById(currUser.id)}</h4>
                 </section>
             </div>
         ) : (

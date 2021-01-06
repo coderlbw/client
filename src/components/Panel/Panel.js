@@ -6,6 +6,7 @@ import './Panel.scss';
 import QueueHistory from './QueueHistory/QueueHistory';
 import Settings from './Settings/Settings';
 import Users from './Users/Users';
+import VideoChat from './VideoChat/VideoChat';
 
 const Panel = ({
     currUser,
@@ -71,6 +72,25 @@ const Panel = ({
                     />
                 </Tab.Pane>
             ),
+        },
+        {
+            menuItem: (
+                <Menu.Item key='video-chat'>
+                    <Icon name='viber' />
+                </Menu.Item>
+            ),
+            pane: (
+                <Tab.Pane key="v-chat">
+                    <VideoChat 
+                        currUser={currUser}
+                        updateCurrUser={ updateCurrUser} 
+                        room={room}
+                        history={history} 
+                        users={users}
+
+                    />
+                </Tab.Pane>
+            )
         },
         {
             menuItem: (
