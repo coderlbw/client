@@ -1,8 +1,12 @@
 import React from 'react';
 import { Icon, Input } from 'semantic-ui-react';
+import { sckt } from '../../../Socket';
 import './ChatInput.scss';
 
 const ChatInput = React.memo(({ message, setMessage, sendMessage }) => {
+
+   
+
 
     const handleInputChange = event => {
         let msg = event.target.value;
@@ -21,8 +25,14 @@ const ChatInput = React.memo(({ message, setMessage, sendMessage }) => {
         send.classList.remove('readyToPress');
     }
 
+    const handleVideo = (event) => {
+        console.log("starting video call....")
+        sckt.socket.emit("videochat");
+    }
+
     return (
         <div>
+            <Icon id='videoIcon' size={"large"}  color="blue" bordered={true} circular={true} name='video' onClick={e => handleVideo(e)} />
             <Input
                 fluid
                 size='large'

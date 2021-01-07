@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 
 
-const ENDPOINT = "https://movipartyapi.herokuapp.com"
+const ENDPOINT = "http://localhost:8080"
 
 
 function Socket() {

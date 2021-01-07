@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
-import { Button, Divider, Grid, Header, Icon, Segment } from 'semantic-ui-react';
+import React, { useEffect, useState } from "react";
+import { Grid, Header, Icon, Segment, Image } from 'semantic-ui-react';
 import { sckt } from '../Socket';
 import './Video.scss';
 import { insert } from '../../utils/video';
 import VideoSearch from './Search/Search';
 import VideoPlayer from "./Player/Player";
+import VideoChat from "../Panel/VideoChat/VideoChat";
 
-const Video = ({ log, name, room, videoProps, updateVideoProps, playerRef, sendVideoState, loadVideo, playVideoFromSearch }) => {
+const Video = ({ log, name, room, currUser, users, videoProps, updateVideoProps, playerRef, sendVideoState, loadVideo, playVideoFromSearch }) => {
+    
+    console.log("inside Video component "+ room)
     const loadFromQueue = (queue, sync = false) => {
         let nextVideo = queue.shift(); // Remove from beginning of queue
         if (nextVideo !== undefined) {
@@ -28,6 +31,10 @@ const Video = ({ log, name, room, videoProps, updateVideoProps, playerRef, sendV
             }
         }
     }
+
+    
+
+
     const addVideoToQueue = (searchItem) => {
         let { queue } = videoProps;
         let updatedQueue = insert(queue, queue.length, searchItem)
@@ -135,8 +142,15 @@ const Video = ({ log, name, room, videoProps, updateVideoProps, playerRef, sendV
                 updateVideoProps={updateVideoProps}
             />
             <Segment placeholder>
+
+                
+                        
+                            <VideoChat currUser={currUser} users={users} room={room} />
+                
+
                 <Grid columns={2} stackable textAlign='center'>
-                    <Divider vertical>Or</Divider>
+                    
+                
 
                     <Grid.Row verticalAlign='middle'>
                         {/* <Grid.Column>
@@ -158,6 +172,7 @@ const Video = ({ log, name, room, videoProps, updateVideoProps, playerRef, sendV
                             </Header>
                         </Grid.Column>
                     </Grid.Row>
+                   
                 </Grid>
             </Segment>
         </div>

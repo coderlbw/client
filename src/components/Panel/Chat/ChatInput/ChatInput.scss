@@ -10,12 +10,18 @@
     background: #fff !important;
     box-shadow: none !important;
   }
-  #sendIcon {
+  #sendIcon,#videoIcon {
     color: #bfbfbf;
     transition: all 0.1s;
     &.readyToPress {
       color: #43a3f0 !important;
       cursor: pointer !important;
       pointer-events: all !important;
+    }
+
+    i #videoIcon {
+      position: absolute;
+      bottom: 20px;
+      z-index: 999;
     }
   }

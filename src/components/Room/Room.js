@@ -19,6 +19,8 @@ const Room = ({ location, history, match }) => {
         colors: JSON.parse(localStorage.getItem('colors'))
     });
     const [room, setRoom] = useState('');
+
+
     const [videoProps, setVideoProps] = useState({
         queue: [],
         history: [],
@@ -78,6 +80,9 @@ const Room = ({ location, history, match }) => {
             // sckt.socket.emit('updateRoomData', { video: searchItem }, (error) => { });
         }
     }
+
+
+
     const playVideoFromSearch = (searchItem) => {
         const url = searchItem.video.url;
         const videoType = getVideoType(url);
@@ -190,6 +195,7 @@ const Room = ({ location, history, match }) => {
             <Video
                 log={log}
                 currUser={currUser}
+                users={users}
                 room={room}
                 videoProps={videoProps}
                 updateVideoProps={updateVideoProps}

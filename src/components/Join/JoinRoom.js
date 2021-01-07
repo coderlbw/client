@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Transition } from 'semantic-ui-react';
+import { Button, Transition, Input } from 'semantic-ui-react';
 import { generateWords } from '../../utils/generateWords';
 import Logo from '../Logo/Logo';
 import './join.scss';
@@ -18,7 +18,7 @@ const JoinRoom = ({ location, history }) => {
     
     return (
         <div className='joinOuterContainer'>
-            <Transition visible={mounted} animation='scale' duration={500}>
+            <Transition visible={mounted} animation='vertical flip' duration={500}>
                 <div className='joinInnerContainer'>
                     <Logo />
                     <section>
@@ -32,6 +32,14 @@ const JoinRoom = ({ location, history }) => {
                             className='button-join'
                             onClick={joinRoom}
                         />
+                    </section>
+                    <section>
+                        <Input action={{
+                            color: 'teal',
+                            icon: 'search'
+                        }} 
+                        
+                        placeholder='Search a room..' />
                     </section>
                 </div >
             </Transition>

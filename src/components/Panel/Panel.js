@@ -1,6 +1,6 @@
 import React from "react";
 // import ReactTooltip from "react-tooltip";
-import { Icon, Menu, Tab } from 'semantic-ui-react';
+import { Icon, Menu, Tab, Transition } from 'semantic-ui-react';
 import Chat from './Chat/Chat';
 import './Panel.scss';
 import QueueHistory from './QueueHistory/QueueHistory';
@@ -75,25 +75,6 @@ const Panel = ({
         },
         {
             menuItem: (
-                <Menu.Item key='video-chat'>
-                    <Icon name='viber' />
-                </Menu.Item>
-            ),
-            pane: (
-                <Tab.Pane key="v-chat">
-                    <VideoChat 
-                        currUser={currUser}
-                        updateCurrUser={ updateCurrUser} 
-                        room={room}
-                        history={history} 
-                        users={users}
-
-                    />
-                </Tab.Pane>
-            )
-        },
-        {
-            menuItem: (
                 <Menu.Item key='video'>
                     <Icon name='video' />
                 </Menu.Item>
@@ -139,9 +120,11 @@ const Panel = ({
     ]
 
     return (
+        <Transition visible={currUser.id !==null? true : false} animation='vertical flip' duration={500}>
         <div className="panelContainer">
             <Tab panes={panes} renderActiveOnly={false} />
         </div>
+        </Transition>
     );
 }
 
